@@ -1,0 +1,73 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: 'Tenorite', sans-serif;
+    font-weight:normal;
+    scrollbar-width: none;
+    
+}
+
+body{
+    padding:0;
+    margin:0;
+    max-height: 100vh;
+    background: hsla(221, 45%, 73%, 1);
+
+    background: linear-gradient(to bottom, hsla(221, 45%, 73%, 1), hsla(220, 78%, 29%, 1));
+    background-repeat: no-repeat;
+}
+
+.container-grid{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+
+    grid-template-columns: repeat(4, 5em);
+    grid-template-rows: minmax(5.5em, auto)repeat(5, 5em);
+}
+
+.container-grid button{
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255,255,255,0.75);
+}
+
+.container-grid button:hover{
+    background-color: rgba(255,255,255,0.95);
+}
+
+.span-two{
+    grid-column: span 2;
+}
+
+.output{
+    grid-column: 1/-1;
+    background-color: rgba(0,0,0,0.80);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 2%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .previous-operand{
+    color:rgba(255,255,255,0.70);
+    font-size: 1.5rem;
+}
+
+.output .current-operand{
+    color:rgba(255, 255, 255, 0.95);
+    font-size: 2.5rem;
+}
+
+svg{
+    max-width: 50%;
+}
+
+h2{
+    margin: 0;
+}

@@ -1,8 +1,7 @@
 const outputArea = document.querySelector('.output');
-const resultDisplay = document.createElement('h2');
-resultDisplay.innerText = '';
 
-outputArea.appendChild(resultDisplay);
+const resultDisplay = document.querySelector('.current-operand');
+const previousNumber = document.querySelector('.previous-operand');
 
 let num1 = 0;
 let num2 = 0;
@@ -16,50 +15,52 @@ const subtractOperator = document.querySelector('.subtract');
 const multiplyOperator = document.querySelector('.multiply');
 const divideOperator = document.querySelector('.divide');
 
-const equalTo = document.querySelector('.equalTo');
+const equalToButton = document.querySelector('.equalTo');
+const allClearButton = document.querySelector('.allClear');
+const delButton = document.querySelector('.del');
 
-//now I have to create on click listeneers for all numbers
 
 for(let number of numbers){
     number.addEventListener('click', () => {
         let currDigit = number.innerText;
-        console.log(currDigit); // okay so this is working.
-
-        //now i just need to append this to the result display
-
+        console.log(currDigit); 
         resultDisplay.innerText += currDigit;
     })
 }
 
-addOperator.addEventListener('click', () => {
+/**
+ * When an operator (add,subtact, multiply or divide is pressed)
+ */
+
+const operatorPressed = () => {
     num1 = resultDisplay.innerText ;
     console.log(num1);
+    previousNumber.innerText = num1;
     resultDisplay.innerText = '';
+}
+
+
+addOperator.addEventListener('click', () => {
+    operatorPressed();
     currOperator = 'add';
 });
 
 subtractOperator.addEventListener('click', () => {
-    num1 = resultDisplay.innerText ;
-    console.log(num1);
-    resultDisplay.innerText = '';
+    operatorPressed();
     currOperator = 'subtract';
 });
 
 multiplyOperator.addEventListener('click', () => {
-    num1 = resultDisplay.innerText ;
-    console.log(num1);
-    resultDisplay.innerText = '';
+    operatorPressed();
     currOperator = 'multiply';
 });
 
 divideOperator.addEventListener('click', () => {
-    num1 = resultDisplay.innerText ;
-    console.log(num1);
-    resultDisplay.innerText = '';
+    operatorPressed();
     currOperator = 'divide';
 });
 
-equalTo.addEventListener('click', () => {
+equalToButton.addEventListener('click', () => {
     num2 = resultDisplay.innerText;
     console.log(num2);
 
@@ -78,8 +79,30 @@ equalTo.addEventListener('click', () => {
             break;
     }
 
-    
-
-    //now I need to figure out which function to call to display the result
 })
+
+allClearButton.addEventListener('click', () => {
+    num1 = 0;
+    num2 = 0;
+    previousNumber.innerText='';
+    resultDisplay.innerText='';
+})
+
+delButton.addEventListener('click', () => {
+    if(num1 !== 0){
+        num1 = num1/10;
+        resultDisplay.innerText = parseInt(num1);
+    }
+})
+
+/**
+ * !Problems :
+ * 1. Delete Button not working in some cases
+ * 2. Decimal operations not working
+ * 
+ * ?Additional Features: Comma Separator
+ * 
+ * Continue watching from 17:58 on https://youtu.be/j59qQ7YWLxw?t=1067
+ * 
+ */
 
